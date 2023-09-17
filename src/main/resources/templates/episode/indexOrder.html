@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <meta charset="UTF-8">
+    <title>Liste des episodes</title>
+</head>
+<body>
+<div th:replace="~{fragments::navbar}"></div>
+<main class="container min-vh-100">
+    <div th:replace="~{fragments::flash}"></div>
+    <div class="container mt-5">
+        <h1>Liste des Épisodes</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><a th:href="${'/episode/order?sortBy=saison.serie.nom&amp;sortDirection='+ !sortDirection+'&page='+pageEpisodes.number }">Saison</a></th>
+                <th><a th:href="${'/episode/order?sortBy=saison.num&amp;sortDirection='+!sortDirection+'&page='+pageEpisodes.number}">Saison</a></th>
+                <th><a th:href="${'/episode/order?sortBy=num&amp;sortDirection='+!sortDirection+'&page='+pageEpisodes.number}">Numéro</a></th>
+                <th><a th:href="${'/episode/order?sortBy=titre&amp;sortDirection='+!sortDirection+'&page='+pageEpisodes.number}">Titre</a></th>
+                <th><a th:href="${'/episode/order?sortBy=realisateur&amp;sortDirection='+!sortDirection+'&page='+pageEpisodes.number}">Réalisateur</a></th>
+                <th><a th:href="${'/episode/order?sortBy=duree&amp;sortDirection='+!sortDirection+'&page='+pageEpisodes.number}">Durée</a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Utilisation de Thymeleaf pour parcourir la liste d'épisodes -->
+            <tr th:each="episode : ${pageEpisodes.content}">
+                <td th:text="${episode.saison.serie.nom}"></td>
+                <td th:text="${episode.saison.num}"></td>
+                <td th:text="${episode.num}"></td>
+                <td th:text="${episode.titre}"></td>
+                <td th:text="${episode.realisateur}"></td>
+                <td th:text="${episode.duree}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, pageEpisodes.totalPages - 1)}" th:classappend="${pageEpisodes.number == i} ? 'active'">
+                    <a class="page-link" th:href="${'/episode/order?page=' + i}" th:text="${i + 1}"></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+</main>
+<div th:replace="~{fragments::foot}"></div>
+</body>
+</html>

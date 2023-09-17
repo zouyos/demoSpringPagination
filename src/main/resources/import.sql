@@ -1,0 +1,4 @@
+insert into serie (nom) values ('fondation');
+insert into saison (annee, num,serie_id) VALUES (2021,1,1),(2023,2,1);
+insert into episode (duree, saison_id, realisateur, titre,num) VALUES (69,1,'Rupert Sanders','The Emperor\'s Peace',1),(61,1,'Andrew Bernstein','Preparing to Live',2),(49,1,'Alex Graves','The Mathematician''s Ghost',3),(45,1,'Alex Graves','Barbarians at the Gate',4),(53,1,'Alex Graves','Upon Awakening',5);
+insert into episode (duree, saison_id, realisateur, titre,num) VALUES (49,2,'Alex Graves','In Seldon\'s Shadow',1),(53,2,'David S. Goyer','A Glimpse of Darkness',2),(54,2,'David S. Goyer','King and Commoner',3),(52,2,'Mark Tonderai','Where the Stars Are Scattered Thinly',4),(47,2,'Alex Graves','The Sighted and Seen',5);

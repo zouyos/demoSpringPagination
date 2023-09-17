@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments::head}">
+    <meta charset="UTF-8">
+    <title>Liste des episodes</title>
+</head>
+<body>
+<div th:replace="~{fragments::navbar}"></div>
+<main class="container min-vh-100">
+    <div th:replace="~{fragments::flash}"></div>
+    <div class="container mt-5">
+        <h1>Liste des Épisodes</h1>
+        <h2 th:text="'Page '+${pageNumber+1}"></h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Série</th>
+                <th>Saison</th>
+                <th>Numéro</th>
+                <th>Titre</th>
+                <th>Réalisateur</th>
+                <th>Durée</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="episode : ${pageEpisodes.content}">
+                <td th:text="${episode.saison.serie.nom}"></td>
+                <td th:text="'Saison '+${episode.saison.num}"></td>
+                <td th:text="${episode.num}"></td>
+                <td th:text="${episode.titre}"></td>
+                <td th:text="${episode.realisateur}"></td>
+                <td th:text="${episode.duree}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation">
+
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, pageEpisodes.totalPages - 1)}" th:classappend="${pageNumber == i} ? 'active'">
+                    <a class="page-link" th:href="${'/episode?page=' + i}" th:text="${i + 1}"></a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+</main>
+<div th:replace="~{fragments::foot}"></div>
+</body>
+</html>
