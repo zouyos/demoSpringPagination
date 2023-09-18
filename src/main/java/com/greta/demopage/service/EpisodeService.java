@@ -17,4 +17,8 @@ public class EpisodeService {
     public Page<Episode> getAll(Pageable pageable) {
         return episodeRepository.findAll(pageable);
     }
+
+    public  Page<Episode> getPageEtRecherche(String titreRecheche,Pageable pageable){
+        return episodeRepository.findByTitreContainsIgnoreCaseOrderBySaison_Serie_NomAscSaison_NumAsc(titreRecheche,pageable);
+    }
 }

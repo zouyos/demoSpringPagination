@@ -24,9 +24,9 @@ public class EpisodeController {
     }
 //Simple pagination
     @GetMapping("/episode")
-    public String getAllEpisodes(Model model, @RequestParam(defaultValue = "0") int page) {
-        Pageable pageable = PageRequest.of(page, 2);
-        Page<Episode> episodes= episodeService.getAll(pageable);
+    public String getAllEpisodes(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "") String titre) {
+        Pageable pageable = PageRequest.of(page, 6);
+        Page<Episode> episodes= episodeService.getPageEtRecherche(titre,pageable);
         model.addAttribute("pageNumber",page);
         model.addAttribute("pageEpisodes",episodes);
         return "episode/indexPagination";
@@ -36,7 +36,7 @@ public class EpisodeController {
     @GetMapping("/episode/order")
     public String getAllEpisodes(Model model,
             @RequestParam(defaultValue = "num") String sortBy,
-            @RequestParam(defaultValue = "true") boolean sortDirection,
+            @RequestParam(defaultValue = "false") boolean sortDirection,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int pageSize) {
 
