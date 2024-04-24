@@ -9,8 +9,4 @@ import java.util.List;
 
 public interface EpisodeRepository extends JpaRepository<Episode, Long> {
     Page<Episode> findByTitreContainsIgnoreCaseOrderBySaison_Serie_NomAscSaison_NumAsc(String titre, Pageable pageable);
-
-
-
-
 }
